@@ -1,13 +1,13 @@
 theme: jekyll-theme-chirpy
 
-lang: en
+lang: ko-KR
 
 timezone: Asia/Seoul
 
 
-title: Home | HCH96 
+title: Changhee' s<br> Dev Dungeon
 
-tagline: HCH96 | Blog 
+tagline: 배우고, 기록하고, 성장하기
 
 # The base URL of your site
 baseurl: ""
@@ -112,7 +112,7 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: "HCH96/HCH96.github.io"
+    repo: ""
     repo_id: "R_kgDONLAmwA"
     category: "Announcements"
     category_id: "DIC_kwDONLAmwM4CkCOP"
