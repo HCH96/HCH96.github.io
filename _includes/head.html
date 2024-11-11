@@ -63,7 +63,7 @@
     {%- unless page.layout == 'home' -%}
       {{ page.title | append: ' | ' }}
     {%- endunless -%}
-    {{ site.title }}
+    {{ site.site_title }}
   </title>
 
   {% include_cached favicons.html %}
