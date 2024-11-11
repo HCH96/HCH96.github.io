@@ -26,6 +26,10 @@ github:
 avatar: /assets/img/profile.png
 logo : /assets/img/favicon.jpg
 
+plugins:
+  - jekyll-target-blank
+
+
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
