@@ -118,7 +118,7 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: ""
+    repo: "HCH96/HCH96.github.io"
     repo_id: "R_kgDONLAmwA"
     category: "Announcements"
     category_id: "DIC_kwDONLAmwM4CkCOP"
