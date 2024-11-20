@@ -125,7 +125,7 @@ comments:
     mapping: "pathname"
     strict: "0"
     input_position: "bottom"
-    data-theme : "dark_tritanopia"
+    data-theme : "preferred_color_scheme"
     lang: "ko"
     reactions_enabled: "1"
     data-emit-metadata : "0"
