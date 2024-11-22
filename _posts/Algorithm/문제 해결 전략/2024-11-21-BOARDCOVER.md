@@ -1,3 +1,4 @@
+---
 title: 알고리즘 문제 해결 전략 - BOARDCOVER
 date: 2024-11-19 01:40:00 +09:00
 categories: [Algorithm, 문제해결전략]
