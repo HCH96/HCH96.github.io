@@ -8,9 +8,10 @@ if ('serviceWorker' in navigator) {
 
   if (register) {
     const swUrl = `${baseUrl}/sw.min.js`;
-    const notification = document.getElementById('notification');
-    const btnRefresh = notification.querySelector('.toast-body>button');
-    const popupWindow = Toast.getOrCreateInstance(notification);
+    // 팝업 로직
+    // const notification = document.getElementById('notification');
+    // const btnRefresh = notification.querySelector('.toast-body>button');
+    // const popupWindow = Toast.getOrCreateInstance(notification);
 
     navigator.serviceWorker.register(swUrl).then((registration) => {
       // 새 Service Worker가 대기 상태일 때 바로 적용 및 새로고침
