@@ -8,66 +8,43 @@ if ('serviceWorker' in navigator) {
 
   if (register) {
     const swUrl = `${baseUrl}/sw.min.js`;
-    // 팝업 로직
-    // const notification = document.getElementById('notification');
-    // const btnRefresh = notification.querySelector('.toast-body>button');
-    // const popupWindow = Toast.getOrCreateInstance(notification);
+    const notification = document.getElementById('notification');
+    const btnRefresh = notification.querySelector('.toast-body>button');
+    const popupWindow = Toast.getOrCreateInstance(notification);
 
     navigator.serviceWorker.register(swUrl).then((registration) => {
-      // 새 Service Worker가 대기 상태일 때 바로 적용 및 새로고침
+      // Restore the update window that was last manually closed by the user
       if (registration.waiting) {
-          registration.waiting.postMessage('SKIP_WAITING');
-          window.location.reload(); // 새로고침
+        popupWindow.show();
       }
 
       registration.addEventListener('updatefound', () => {
-          registration.installing.addEventListener('statechange', () => {
-              if (registration.waiting && navigator.serviceWorker.controller) {
-                  registration.waiting.postMessage('SKIP_WAITING');
-                  window.location.reload(); // 새로고침
-              }
-          });
+        registration.installing.addEventListener('statechange', () => {
+          if (registration.waiting) {
+            if (navigator.serviceWorker.controller) {
+              popupWindow.show();
+            }
+          }
+        });
       });
 
-      // 팝업 로직을 완전히 제거
+      btnRefresh.addEventListener('click', () => {
+        if (registration.waiting) {
+          registration.waiting.postMessage('SKIP_WAITING');
+        }
+        popupWindow.hide();
+      });
     });
 
-    // legacy -> 새로운 포스트가 올라왔을 때 팝업으로 로딩할지 선택
-    // navigator.serviceWorker.register(swUrl).then((registration) => {
-    //   // Restore the update window that was last manually closed by the user
-    //   if (registration.waiting) {
-    //     popupWindow.show();
-    //   }
+    let refreshing = false;
 
-    //   registration.addEventListener('updatefound', () => {
-    //     registration.installing.addEventListener('statechange', () => {
-    //       if (registration.waiting) {
-    //         if (navigator.serviceWorker.controller) {
-    //           popupWindow.show();
-    //         }
-    //       }
-    //     });
-    //   });
-
-    //   btnRefresh.addEventListener('click', () => {
-    //     if (registration.waiting) {
-    //       registration.waiting.postMessage('SKIP_WAITING');
-    //     }
-    //     popupWindow.hide();
-    //   });
-    // });
-
-    // let refreshing = false;
-
-    // // Detect controller change and refresh all the opened tabs
-    // navigator.serviceWorker.addEventListener('controllerchange', () => {
-    //   if (!refreshing) {
-    //     window.location.reload();
-    //     refreshing = true;
-    //   }
-    // });
-
-
+    // Detect controller change and refresh all the opened tabs
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        window.location.reload();
+        refreshing = true;
+      }
+    });
   } else {
     navigator.serviceWorker.getRegistrations().then(function (registrations) {
       for (let registration of registrations) {
