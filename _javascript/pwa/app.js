@@ -28,12 +28,17 @@ if ('serviceWorker' in navigator) {
         });
       });
 
-      btnRefresh.addEventListener('click', () => {
-        if (registration.waiting) {
-          registration.waiting.postMessage('SKIP_WAITING');
-        }
-        popupWindow.hide();
-      });
+      if (registration.waiting) {
+        registration.waiting.postMessage('SKIP_WAITING');
+        window.location.reload(); // 새로고침 추가
+      }
+
+      // btnRefresh.addEventListener('click', () => {
+      //   if (registration.waiting) {
+      //     registration.waiting.postMessage('SKIP_WAITING');
+      //   }
+      //   popupWindow.hide();
+      // });
     });
 
     let refreshing = false;
